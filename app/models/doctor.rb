@@ -2,6 +2,11 @@ class Doctor < ActiveRecord::Base
   SPECIALITIES = ["OB/GYN", "Opthamology", "Pediatrics",
     "Family Medicine", "ENT", "Gastrointestinal"]
 
+  has_many :appointments
+  belongs_to :supervisor, class_name: "Doctor"
+  has_many :reports, class_name: "Doctor", foreign_key: "supervisor_id"
+  has_many :patients, :through => :appointments
+
   validates :speciality,
     presence: true,
     inclusion: { in: SPECIALITIES,

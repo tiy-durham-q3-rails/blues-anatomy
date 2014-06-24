@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624150018) do
+ActiveRecord::Schema.define(version: 20140624160429) do
+
+  create_table "appointments", force: true do |t|
+    t.integer  "doctor_id"
+    t.integer  "patient_id"
+    t.datetime "when"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "appointments", ["doctor_id"], name: "index_appointments_on_doctor_id"
+  add_index "appointments", ["patient_id"], name: "index_appointments_on_patient_id"
 
   create_table "doctors", force: true do |t|
     t.datetime "created_at"
@@ -22,6 +33,20 @@ ActiveRecord::Schema.define(version: 20140624150018) do
     t.integer  "supervisor_id"
     t.text     "bio"
     t.boolean  "taciturn",      default: false
+  end
+
+  create_table "notes", force: true do |t|
+    t.text     "content"
+    t.integer  "notable_id"
+    t.string   "notable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "patients", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
