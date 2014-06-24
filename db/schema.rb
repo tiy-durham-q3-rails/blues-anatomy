@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624142851) do
+ActiveRecord::Schema.define(version: 20140624150018) do
 
   create_table "doctors", force: true do |t|
     t.datetime "created_at"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 20140624142851) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "speciality"
+    t.integer  "supervisor_id"
+    t.text     "bio"
+    t.boolean  "taciturn",      default: false
   end
 
 end
