@@ -12,4 +12,10 @@ class DoctorTest < ActiveSupport::TestCase
     refute doctor.valid?
     refute doctor.errors[:bio].empty?
   end
+
+  test "specialities are normalized in casing" do
+    doctor = Doctor.new(speciality: "ent")
+    doctor.valid?
+    assert_equal "ENT", doctor.speciality
+  end
 end
